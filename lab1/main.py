@@ -6,7 +6,7 @@ def sum(n):
         s += i+1
     return s
 
-def prim(n):
+def isPrime(n):
     if n == 1:
         return 0
     for i in range(2, int(math.sqrt(n)) + 1):
@@ -33,7 +33,7 @@ if __name__ == '__main__':
            print(sum(n))
        elif x == 2:
              n = int(input())
-             print(prim(n))
+             print(isPrime(n))
        elif x == 3:
                 print("introdu 2 numere")
                 a, b = map(int, input().split())
