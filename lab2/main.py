@@ -24,17 +24,32 @@ def age(Day, Month, Year):
     ans += (30 - Day) + (12 - Month) * 30
     return ans
 
+def showDate(Year, xDay):
+    Month =  int(xDay / 30) + (xDay % 30 != 0)
+    if xDay > 30:
+        xDay %= 30
+    print(xDay, end = " ")
+    print(Month, end = " ")
+    print(Year)
+
 
 if __name__ == '__main__':
     task = int(input())
+
     if task == 1:
         number = int(input())
         print(firstPrime(num))
+
     elif task == 2:
         Day = int(input())
         Month = int(input())
         Year = int(input())
         print(age(Day, Month, Year))
+
+    elif task == 3:
+        Year = int(input())
+        xDay = int(input())
+        print(showDate(Year, xDay))
 
 
 
