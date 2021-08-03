@@ -3,9 +3,9 @@ import datetime
 
 
 def isPrime(num):
-    if n == 1:
+    if num == 1:
         return 0
-    for i in range(2, math.sqrt(num) + 1):
+    for i in range(2, int(math.sqrt(num)) + 1):
         if num % i == 0:
             return 0
     return 1
@@ -32,6 +32,17 @@ def showDate(Year, xDay):
     print(Month, end = " ")
     print(Year)
 
+def findPrimes(num):
+    if isPrime(num - 2) == 1:
+        print(2, end = " ")
+        print(num - 2)
+    else:
+        for i in range(3, num - 1, 2):
+            if isPrime(num - i):
+                print(i, end = " ")
+                print(num - i)
+                break
+
 
 if __name__ == '__main__':
     task = int(input())
@@ -50,6 +61,10 @@ if __name__ == '__main__':
         Year = int(input())
         xDay = int(input())
         print(showDate(Year, xDay))
+
+    elif task == 4:
+        number = int(input())
+        findPrimes(number)
 
 
 
