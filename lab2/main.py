@@ -66,6 +66,9 @@ if __name__ == '__main__':
         number = int(input())
         findPrimes(number)
 
+    elif task == 5:
+        print("nu mai exista asa ceva")
+
 
 
 
