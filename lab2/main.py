@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     if task == 1:
         number = int(input())
-        print(firstPrime(num))
+        print(firstPrime(number))
 
     elif task == 2:
         Day = int(input())
