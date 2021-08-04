@@ -19,9 +19,12 @@ def firstPrime(num):
 def age(Day, Month, Year):
     curr = datetime.datetime.now()
     ans = 0
-    ans += (curr.year - Year - (curr.year != Year)) * 365
-    ans += (curr.month * 30) + curr.day
-    ans += (30 - Day) + (12 - Month) * 30
+    if curr.year == Year:
+        ans += (curr.month * 30 + curr.day) - (Month * 30 + Day)
+    else:
+        ans += (curr.year - Year - 1) * 365
+        ans += (curr.month * 30) + curr.day
+        ans += (30 - Day) + (12 - Month) * 30
     return ans
 
 def showDate(Year, xDay):
