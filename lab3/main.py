@@ -1,7 +1,4 @@
 
-
-
-
 def maxEqual(arr, n):
     maxLen = Len = 1
 
