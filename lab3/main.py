@@ -1,5 +1,5 @@
 
-def maxEqual(arr, n):
+def max_equal(arr, n):
     maxLen = Len = 1
 
     for i in range(1, len(arr)):
@@ -15,7 +15,7 @@ def maxEqual(arr, n):
 
 
 
-def maxAscending(arr, n):
+def max_ascending(arr, n):
     maxLen = Len = 1
 
     for i in range(1, len(arr)):
@@ -52,11 +52,11 @@ if __name__ == '__main__':
             selected = int(input("care este urmatoarea operatie:"))
 
             if selected == 2:
-                print(maxEqual(arr, n))
+                print(max_equal(arr, n))
                 break
 
             elif selected == 3:
-                print(maxAscending(arr, n))
+                print(max_ascending(arr, n))
                 break
 
             else: quit()
