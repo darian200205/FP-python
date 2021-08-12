@@ -1,112 +1,13 @@
 import math
 import sys
+from user_menu import right_operation
+from list_operations import _replace, move_elements, delete_elements
+from list_operations import _sum, product, sort_descending_imaginary
+from filter_list import filter_module, filter_real_numbers
 
-
-def right_operation(operation1, operation2, text):
-    good = False
-    while not good:
-        try:
-            task = int(input(text))
-            good = True
-        except ValueError:
-            print("Trebuie sa fie numerica")
-            good = False
-        if good:
-            if operation1 <= task <= operation2:
-                return task
-            else:
-                good = not good
-
-
-def move_elements(i, array):
-    array.append(array[len(array) - 1])
-    for i in range(len(array) - 2, i, -1):
-        array[i] = array[i - 1]
-    array.remove(array[len(array) - 1])
-
-
-def delete_elements(i, j, array):
-    for el in range(i, j + 1):
-        array.remove(array[el])
-
-
-def _replace(replaced_real, replaced_imaginary, new_real, new_imaginary, array):
-    for i in array:
-        if i[0] == replaced_real and i[1] == replaced_imaginary:
-            i[0] = new_real
-            i[1] = new_imaginary
-            i[2] = int(math.sqrt(new_real * new_real + new_imaginary * new_imaginary))
-
-
-def _sum(start, end, array):
-    sum_real = 0
-    sum_imaginary = 0
-    if end is not len(array):
-        end += 1
-    for i in range(start, end):
-        sum_real += array[i][0]
-        sum_imaginary += array[i][1]
-
-    print(sum_real, end=" ")
-    print(sum_imaginary)
-
-
-def product(start, end, array):
-    prod_real = prod_imaginary = 0
-    real = imaginary = 0
-
-    for i in range(start, end + 1):
-        if i == start:
-            real = array[i][0]
-            imaginary = array[i][1]
-        else:
-            prod_real += array[i][0] * real - imaginary * array[i][1]
-            prod_imaginary += real * array[i][1] + imaginary * array[i][0]
-            real = prod_real
-            imaginary = prod_imaginary
-
-    print(prod_real, end=" ")
-    print(prod_imaginary, end=" ")
-
-
-def sort_descending_imaginary(array):
-    array.sort(key=lambda tup: tup[1])
-    array.reverse()
-    print(array)
-
-
-def is_prime(num):
-    if num == 1:
-        return 0
-    for i in range(2, int(math.sqrt(num)) + 1):
-        if num % i == 0:
-            return 0
-    return 1
-
-
-def filter_real_numbers(array):
-    for i in range(0, len(array)-1):
-        if is_prime(array[i][0]):
-            array.remove(array[i])
-
-
-def filter_module(array, target, operator):
-    for i in range(0, len(array)-1):
-        if operator == 1 and array[i][2] < target:
-            array.remove(array[i])
-        elif operator == 2 and array[i][2] == target:
-            array.remove(array[i])
-        elif operator == 3 and array[i][2] > target:
-            array.remove(array[i])
-
-
-def output_list(array):
-    for i in range(len(array) - 1):
-        print(array[i], end=" ")
 
 
 if __name__ == '__main__':
-
     menu = {'1': "Adaugă număr în listă. ", '2': "Modifică elemente din listă. ", '3': "Căutare numere. ",
             '4': "Operații cu numerele din listă ", '5': "Filtrare. ", '6': "Undo ", '7': "Iesire"}
 
@@ -203,5 +104,5 @@ if __name__ == '__main__':
                 filter_module(list, target, operator)
             print(list)
 
-        elif _selected == 7:
+        elif _selected == 6:
             quit()
