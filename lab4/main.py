@@ -14,7 +14,7 @@ if __name__ == '__main__':
             print(options, end=" ")
             print(menu[options])
 
-        _selected = right_operation(1, 7, "Introdu un numar:")
+        _selected = right_operation(1, 6, "Introdu un numar:")
         if _selected == 1:
             do_task_1(list)
 
