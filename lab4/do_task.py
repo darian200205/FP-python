@@ -76,10 +76,14 @@ def do_task_4(array):
         if _next == 1:
             _sum(pos1, pos2, array)
         else:
-            product(pos1, pos2, array)
+            res_real = res_imaginary = None
+            product(pos1, pos2, array, res_real, res_imaginary)
+            print(res_real, end=" ")
+            print(res_imaginary)
     elif _next == 3:
         aux = array.copy()
         sort_descending_imaginary(aux)
+        print(aux)
 
 
 def do_task_5(array):

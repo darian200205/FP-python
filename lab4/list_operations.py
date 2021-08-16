@@ -31,7 +31,7 @@ def _sum(start, end, array):
     print(sum_imaginary)
 
 
-def product(start, end, array):
+def product(start, end, array, res_real, res_imaginary):
     prod_real = prod_imaginary = 0
     real = imaginary = 0
 
@@ -45,11 +45,10 @@ def product(start, end, array):
             real = prod_real
             imaginary = prod_imaginary
 
-    print(prod_real, end=" ")
-    print(prod_imaginary, end=" ")
+    res_real = prod_real
+    res_imaginary = prod_imaginary
 
 
 def sort_descending_imaginary(array):
     array.sort(key=lambda tup: tup[1])
     array.reverse()
-    print(array)
