@@ -24,17 +24,14 @@ if __name__ == '__main__':
     }
 
     while True:
-        for options in range (0, len(show_menu)):
+        for options in range(0, len(show_menu)):
             print(show_menu[options])
 
-        key = int(input("Introdu un numar:"))
         while True:
+            key = int(input("Introdu un numar:"))
             if key in functionality_menu:
                 break
             else:
-                key = input("Gresit. Mai incearca:")
+                print("Gresit. Mai incearca!")
 
         functionality_menu[key](list)
-
-
-

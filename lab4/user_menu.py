@@ -13,3 +13,5 @@ def right_operation(operation1, operation2, text):
             else:
                 good = not good
 
+
+
