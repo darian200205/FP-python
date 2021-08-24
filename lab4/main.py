@@ -47,5 +47,4 @@ if __name__ == '__main__':
             continue
 
         functionality_menu[key](list, undo_array)
-        print(undo_array)
 
