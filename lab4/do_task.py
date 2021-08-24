@@ -1,12 +1,14 @@
 import math
 import sys
-from user_menu import right_operation
+import copy
+
+from filter_list import filter_module, filter_real_numbers
 from list_operations import _replace, move_elements, delete_elements
 from list_operations import _sum, product, sort_descending_imaginary
-from filter_list import filter_module, filter_real_numbers
+from user_menu import right_operation
 
 
-def do_task_1(array):
+def do_task_1(array, undo_array):
     num1, num2 = map(int, input("Introdu a si b:").split())
     print("1 Adaugă număr complex la sfârșitul listei")
     print("2 Inserare număr complex pe o poziție dată")
@@ -21,10 +23,11 @@ def do_task_1(array):
         else:
             move_elements(position, array)
             array.insert(position, [num1, num2, module])
+
     print(array)
 
 
-def do_task_2(array):
+def do_task_2(array, undo_array):
     print("Care este urmatoarea operatie?")
     print("1 Șterge elementele de pe un interval de poziții.")
     print("2 Înlocuiește toate aparițiile unui număr complex cu un alt număr complex.")
@@ -40,7 +43,7 @@ def do_task_2(array):
     print(array)
 
 
-def do_task_3(array):
+def do_task_3(array, undo_array):
     print("Care este urmatoarea operatie?")
     print("1 Tipărește partea imaginara pentru numerele din listă. Se dă intervalul de poziții (sub secvența).")
     print("2 Tipărește toate numerele complexe care au modulul mai mic decât 10")
@@ -65,7 +68,7 @@ def do_task_3(array):
             cnt += 1
 
 
-def do_task_4(array):
+def do_task_4(array, undo_array):
     print("1 suma numerelor dintr-o subsecventă dată:")
     print("2 Produsul numerelor dintr-o subsecventă dată:")
     print("3 Tipărește lista sortată descrescător după partea imaginara:")
@@ -86,7 +89,7 @@ def do_task_4(array):
         print(aux)
 
 
-def do_task_5(array):
+def do_task_5(array, undo_array):
     print("1 Filtrare parte reala prim – elimină din listă numerele complexe la care partea reala este prim.:")
     print("2 Filtrare modul – elimina din lista numerele complexe la care modulul este <,= sau > decât un număr dat.:")
     _next = right_operation(1, 2, "Introduceti urmatoarea operatie:")
@@ -97,3 +100,4 @@ def do_task_5(array):
         operator = right_operation(1, 3, "Introduceti 1 pt '<', 2 pentru '=' si 3 pentru '>':")
         filter_module(array, target, operator)
     print(array)
+
