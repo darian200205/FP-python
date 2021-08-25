@@ -1,6 +1,8 @@
 import copy
 from do_task import do_task_1, do_task_2, do_task_3, do_task_4, do_task_5
 
+list = []
+
 if __name__ == '__main__':
 
     aux = []
@@ -26,8 +28,6 @@ if __name__ == '__main__':
         7: print
     }
 
-    list = []
-
     while True:
         for options in range(0, len(show_menu)):
             print(show_menu[options])
@@ -39,12 +39,4 @@ if __name__ == '__main__':
             else:
                 print("Gresit. Mai incearca!")
 
-        if key == 1 or key == 2 or key == 5:
-            undo_array = copy.copy(list)
-        elif key == 7:
-            list = copy.copy(undo_array)
-            print(list)
-            continue
-
-        functionality_menu[key](list, undo_array)
-
+        functionality_menu[key](list)

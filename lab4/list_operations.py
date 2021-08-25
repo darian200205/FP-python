@@ -1,8 +1,9 @@
 def move_elements(i, array):
-    array.append(array[len(array) - 1])
-    for i in range(len(array) - 2, i, -1):
-        array[i] = array[i - 1]
-    array.remove(array[len(array) - 1])
+    last = len(array) - 1
+    array.append(array[last])
+    for j in range(len(array) - 2, i, -1):
+        array[j] = array[j - 1]
+    array.remove(array[last])
 
 
 def delete_elements(i, j, array):
