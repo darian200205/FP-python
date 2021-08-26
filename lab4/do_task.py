@@ -144,3 +144,8 @@ def do_task_5(array):
         filter_module(array, target, operator)
     for it in array:
         it.show_numbers()
+
+
+def show_list(array):
+    for i in array:
+        i.show_numbers()

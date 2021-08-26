@@ -41,4 +41,14 @@ if __name__ == '__main__':
 
         if key == 6:
             quit()
+        elif key == 1 or key == 2 or key == 5:
+            undo_array.append(copy.deepcopy(list))
+        elif key == 7:
+            list.clear()
+            list = copy.deepcopy(undo_array[len(undo_array)-1])
+            undo_array.remove(undo_array[len(undo_array)-1])
+            for i in list:
+                i.show_numbers()
+            print('\n')
+            continue
         functionality_menu[key](list)
