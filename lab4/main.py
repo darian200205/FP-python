@@ -1,5 +1,5 @@
 import copy
-from do_task import do_task_1, do_task_2, do_task_3, do_task_4, do_task_5
+from do_task import do_task_1, do_task_2, do_task_3, do_task_4, do_task_5, Complex
 
 list = []
 
@@ -39,4 +39,6 @@ if __name__ == '__main__':
             else:
                 print("Gresit. Mai incearca!")
 
+        if key == 6:
+            quit()
         functionality_menu[key](list)

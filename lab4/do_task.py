@@ -1,3 +1,4 @@
+import copy
 import math
 import sys
 
@@ -58,8 +59,10 @@ def do_task_2(array):
         pos2 = right_operation(0, len(array) - 1, "Introdu a doua pozitie:")
         delete_elements(pos1, pos2, array)
     else:
-        a, b = map(int, input("Introduceti numarul complex care doriti sa fie inlocuit:").split())
-        x, y = map(int, input("Introduceti numarul complex care sa il inlocuiasca:").split())
+        a, b = map(int, input("Introduceti coeficientii numarului complex separati prin enter care doriti sa fie "
+                              "inlocuit:").split())
+        x, y = map(int, input("Introduceti coeficientii numarului complex separati prin enter care sa il inlocuiasca:")
+                   .split())
         _replace(a, b, x, y, array)
 
     for nums in array:
@@ -115,16 +118,18 @@ def do_task_4(array):
         else:
             multiply = Complex(array[pos1].real, array[pos1].imaginary, array[pos1].module)
             add = Complex(0, 0, 0)
-            for i in range(pos1+1, pos2+1):
-                multiply = multiply*array[i]
+            for i in range(pos1 + 1, pos2 + 1):
+                multiply = multiply * array[i]
                 add = add + multiply
             add.show_numbers()
             print('\n')
 
     elif _next == 3:
-        aux = array.copy()
+        aux = copy.deepcopy(array)
         sort_descending_imaginary(aux)
-        print(aux)
+        for i in aux:
+            i.show_numbers()
+        print('\n')
 
 
 def do_task_5(array):
@@ -137,4 +142,5 @@ def do_task_5(array):
         target = right_operation(0, sys.maxsize, "Introduceti numarul:")
         operator = right_operation(1, 3, "Introduceti 1 pt '<', 2 pentru '=' si 3 pentru '>':")
         filter_module(array, target, operator)
-    print(array)
+    for it in array:
+        it.show_numbers()
