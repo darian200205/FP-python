@@ -1,5 +1,6 @@
 def right_operation(operation1, operation2, text):
     good = False
+    task = None
     while not good:
         try:
             task = int(input(text))

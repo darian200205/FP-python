@@ -4,7 +4,7 @@ import sys
 
 from filter_list import filter_module, filter_real_numbers
 from list_operations import _replace, move_elements, delete_elements
-from list_operations import _sum, product, sort_descending_imaginary
+from list_operations import sort_descending_imaginary
 from user_menu import right_operation
 
 

@@ -1,7 +1,7 @@
 import copy
 from do_task import do_task_1, do_task_2, do_task_3, do_task_4, do_task_5, Complex
 
-list = []
+numbers = []
 
 if __name__ == '__main__':
 
@@ -42,13 +42,13 @@ if __name__ == '__main__':
         if key == 6:
             quit()
         elif key == 1 or key == 2 or key == 5:
-            undo_array.append(copy.copy(list))
+            undo_array.append(copy.copy(numbers))
         elif key == 7:
-            list.clear()
-            list = copy.copy(undo_array[len(undo_array)-1])
+            numbers.clear()
+            numbers = copy.copy(undo_array[len(undo_array) - 1])
             undo_array.remove(undo_array[len(undo_array)-1])
-            for i in list:
+            for i in numbers:
                 i.show_numbers()
             print('\n')
             continue
-        functionality_menu[key](list)
+        functionality_menu[key](numbers)
