@@ -1,9 +1,31 @@
+import copy
 import math
 import sys
-from user_menu import right_operation
-from list_operations import _replace, move_elements, delete_elements
-from list_operations import _sum, product, sort_descending_imaginary
+
 from filter_list import filter_module, filter_real_numbers
+from list_operations import _replace, move_elements, delete_elements
+from list_operations import sort_descending_imaginary
+from user_menu import right_operation
+
+
+class Complex:
+    def __init__(self, real, imaginary, module):
+        self.real = real
+        self.imaginary = imaginary
+        self.module = module
+
+    def show_numbers(self):
+        print("[" + str(self.real) + "+" + str(self.imaginary) + "i" + "]", end="")
+
+    def __add__(self, other):
+        real_ans = self.real + other.real
+        imaginary_ans = self.imaginary + other.imaginary
+        return Complex(real_ans, imaginary_ans, int(math.sqrt(real_ans * real_ans + imaginary_ans * imaginary_ans)))
+
+    def __mul__(self, other):
+        real_ans = self.real * other.real - self.imaginary * other.imaginary
+        imaginary_ans = self.imaginary * other.real + self.real * other.imaginary
+        return Complex(real_ans, imaginary_ans, int(math.sqrt(real_ans * real_ans + imaginary_ans * imaginary_ans)))
 
 
 def do_task_1(array):
@@ -13,15 +35,18 @@ def do_task_1(array):
     _next = right_operation(1, 2, "Introdu 1 sau 2:")
     module = int(math.sqrt(num1 * num1 + num2 * num2))
     if _next == 1:
-        array.append([num1, num2, module])
+        array.append(Complex(num1, num2, module))
     else:
         position = right_operation(0, len(array), "Introdu pozitia:")
         if position == 0 and len(array) == 0:
-            array.append([num1, num2, module])
+            array.append(Complex(num1, num2, module))
         else:
             move_elements(position, array)
-            array.insert(position, [num1, num2, module])
-    print(array)
+            array.insert(position, Complex(num1, num2, module))
+
+    for nums in array:
+        nums.show_numbers()
+    print('\n')
 
 
 def do_task_2(array):
@@ -34,10 +59,15 @@ def do_task_2(array):
         pos2 = right_operation(0, len(array) - 1, "Introdu a doua pozitie:")
         delete_elements(pos1, pos2, array)
     else:
-        a, b = map(int, input("Introduceti numarul complex care doriti sa fie inlocuit:").split())
-        x, y = map(int, input("Introduceti numarul complex care sa il inlocuiasca:").split())
+        a, b = map(int, input("Introduceti coeficientii numarului complex separati prin enter care doriti sa fie "
+                              "inlocuit:").split())
+        x, y = map(int, input("Introduceti coeficientii numarului complex separati prin enter care sa il inlocuiasca:")
+                   .split())
         _replace(a, b, x, y, array)
-    print(array)
+
+    for nums in array:
+        nums.show_numbers()
+    print('\n')
 
 
 def do_task_3(array):
@@ -46,23 +76,25 @@ def do_task_3(array):
     print("2 Tipărește toate numerele complexe care au modulul mai mic decât 10")
     print("3 Tipareste toate numerele complexe care au modulul egal cu 10")
     _next = right_operation(1, 3, "Introdu operatia:")
+
     if _next == 1:
         pos1 = right_operation(0, len(array) - 1, "Introdu prima pozitie:")
         pos2 = right_operation(0, len(array) - 1, "Introdu a doua pozitie:")
         for it in range(pos1, pos2 + 1):
-            print(array[it], end=" ")
+            print(array[it].imaginary, end=" ")
+        print('\n')
+
     elif _next == 2:
-        cnt = 0
         for it in array:
-            if it[2] < 10:
-                print(array[cnt], end=" ")
-            cnt += 1
+            if it.module < 10:
+                it.show_numbers()
+        print('\n')
+
     elif _next == 3:
-        cnt = 0
         for it in array:
-            if it[2] == 10:
-                print(array[cnt], end=" ")
-            cnt += 1
+            if it.module == 10:
+                it.show_numbers()
+        print('\n')
 
 
 def do_task_4(array):
@@ -70,20 +102,34 @@ def do_task_4(array):
     print("2 Produsul numerelor dintr-o subsecventă dată:")
     print("3 Tipărește lista sortată descrescător după partea imaginara:")
     _next = right_operation(1, 3, "Alegeti urmatoarea operatie:")
+
     if _next == 1 or _next == 2:
         pos1 = right_operation(0, len(array) - 1, "Introdu prima pozitie:")
         pos2 = right_operation(0, len(array) - 1, "Introdu a doua pozitie:")
+
         if _next == 1:
-            _sum(pos1, pos2, array)
+            add = Complex(0, 0, 0)
+            for i in range(pos1, pos2 + 1):
+                add.imaginary += array[i].imaginary
+                add.real += array[i].real
+            add.show_numbers()
+            print('\n')
+
         else:
-            res_real = res_imaginary = None
-            product(pos1, pos2, array, res_real, res_imaginary)
-            print(res_real, end=" ")
-            print(res_imaginary)
+            multiply = Complex(array[pos1].real, array[pos1].imaginary, array[pos1].module)
+            add = Complex(0, 0, 0)
+            for i in range(pos1 + 1, pos2 + 1):
+                multiply = multiply * array[i]
+                add = add + multiply
+            add.show_numbers()
+            print('\n')
+
     elif _next == 3:
-        aux = array.copy()
+        aux = copy.deepcopy(array)
         sort_descending_imaginary(aux)
-        print(aux)
+        for i in aux:
+            i.show_numbers()
+        print('\n')
 
 
 def do_task_5(array):
@@ -96,4 +142,10 @@ def do_task_5(array):
         target = right_operation(0, sys.maxsize, "Introduceti numarul:")
         operator = right_operation(1, 3, "Introduceti 1 pt '<', 2 pentru '=' si 3 pentru '>':")
         filter_module(array, target, operator)
-    print(array)
+    for it in array:
+        it.show_numbers()
+
+
+def show_list(array):
+    for i in array:
+        i.show_numbers()

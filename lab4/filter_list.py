@@ -1,3 +1,6 @@
+import math
+
+
 def is_prime(num):
     if num == 1:
         return False
@@ -8,16 +11,22 @@ def is_prime(num):
 
 
 def filter_real_numbers(array):
-    for i in range(0, len(array)-1):
-        if is_prime(array[i][0]):
+    i = 0
+    while i < len(array):
+        if is_prime(array[i].real):
             array.remove(array[i])
+        else:
+            i += 1
 
 
 def filter_module(array, target, operator):
-    for i in range(0, len(array)-1):
-        if operator == 1 and array[i][2] < target:
-            array.remove(array[i])
-        elif operator == 2 and array[i][2] == target:
-            array.remove(array[i])
-        elif operator == 3 and array[i][2] > target:
-            array.remove(array[i])
+    i = 0
+    while i < len(array):
+        if operator == 1 and array[i].module < target:
+            array.remove(i)
+        elif operator == 2 and array[i].module == target:
+            array.remove(i)
+        elif operator == 3 and array[i].module > target:
+            array.remove(i)
+        else:
+            i += 1
