@@ -1,7 +1,4 @@
-import copy
-
-from Student import Student
-from Subject import Subject
+from Add import add_student_to_list, add_subject_to_list
 from show_menus import show_menu, show_search_menu, show_add_menu, show_delete_menu, show_modify_menu, show_statistics
 from data_lists import student_list, subjects_list
 
@@ -34,18 +31,13 @@ if __name__ == '__main__':
             if task == 1:
                 id_of_student = input("Introduceti ID-ul studentului si apasati enter:")
                 name_of_student = input("Introduceti: NUME + PRENUME student si apasati enter:")
-                student_list.append(Student(id_of_student, name_of_student))
-                for i in range(0, len(subjects_list)):
-                    student_list[len(student_list)-1].grades.append([subjects_list[i].subject_id, "Media", 0, "Notele"])
+                add_student_to_list(id_of_student, name_of_student)
 
             elif task == 2:
                 id_of_subject = input("Introduceti ID-ul disciplinei si apasati enter:").upper()
                 name_of_subject = input("Introduceti numele disciplinei si apasati enter:").upper()
                 name_of_teacher = input("Introduceti numele profesorului si apasati enter:").upper()
-                subjects_list.append(Subject(id_of_subject, name_of_subject, name_of_teacher))
-                for i in range(0, len(student_list)):
-                    student_list[i].grades.append([id_of_subject, "Media", 0, "Notele"])
-
+                add_subject_to_list(id_of_subject, name_of_subject, name_of_teacher)
 
         elif task == 2:
             for i in show_delete_menu:
@@ -124,7 +116,8 @@ if __name__ == '__main__':
                         if student_list[i].grades[j][0] == id_of_subject:
                             student_list[i].grades[j].append(grade_)
                             student_list[i].grades[j][2] += grade_
-                            student_list[i].grades[j][2] = student_list[i].grades[j][2] / (len(student_list[i].grades[j]) - 4)
+                            student_list[i].grades[j][2] = student_list[i].grades[j][2] / (
+                                    len(student_list[i].grades[j]) - 4)
                             break
 
         elif task == 5:
@@ -188,19 +181,22 @@ if __name__ == '__main__':
                 if modify_what == "NUME":
                     new_name = input("Introduceti noul nume al disciplinei:").upper()
                     for i in range(0, len(subjects_list)):
-                        if subjects_list[i].subject_id == subject_to_modify or subjects_list[i].subject_name == subject_to_modify:
+                        if subjects_list[i].subject_id == subject_to_modify or subjects_list[
+                            i].subject_name == subject_to_modify:
                             subjects_list[i].subject_name = new_name
 
                 elif modify_what == "ID":
                     new_id = input("Introduceti noul ID al disciplinei:").upper()
                     for i in range(0, len(subjects_list)):
-                        if subjects_list[i].subject_id == subject_to_modify or subjects_list[i].subject_name == subject_to_modify:
+                        if subjects_list[i].subject_id == subject_to_modify or subjects_list[
+                            i].subject_name == subject_to_modify:
                             subjects_list[i].subject_id = new_id
 
                 elif modify_what == "PROFESOR":
                     new_teacher = input("Introduceti numele profesorului:").upper()
                     for i in range(0, len(subjects_list)):
-                        if subjects_list[i].subject_id == subject_to_modify or subjects_list[i].subject_name == subject_to_modify:
+                        if subjects_list[i].subject_id == subject_to_modify or subjects_list[
+                            i].subject_name == subject_to_modify:
                             subjects_list[i].teacher = new_teacher
 
         print('\n')
