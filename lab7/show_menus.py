@@ -1,4 +1,4 @@
-show_menu = ["1:Adauga"
+show_menu = ["1:Adauga",
              "2:Sterge",
              "3:Cautare",
              "4:Asignare de note",

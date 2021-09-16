@@ -64,10 +64,10 @@ if __name__ == '__main__':
             task = int(input("Introduceti numarul urmatoarei operatii si apasati enter:"))
 
             if task == 1:
-                searched_student = input("Introduceti NUME + PRENUME studentului cautat cu majuscule exact cum acesta "
+                searched_student = input("Introduceti NUME + PRENUME studentului cautat exact cum acesta "
                                          "e "
                                          "inregistrat si "
-                                         "apasati enter:")
+                                         "apasati enter:").upper()
                 exists = False
                 for i in student_list:
                     if i.student_name == searched_student:
@@ -81,9 +81,9 @@ if __name__ == '__main__':
                 print('\n')
 
             if task == 2:
-                searched_subject = input("Introduceti numele disciplinei cu majuscule exact cum aceasta e "
+                searched_subject = input("Introduceti numele disciplinei exact cum aceasta e "
                                          "inregistrata si apasati "
-                                         "enter:")
+                                         "enter:").upper()
 
                 exists = False
                 for i in subjects_list:
