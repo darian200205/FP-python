@@ -1,11 +1,9 @@
 from Domain.Student import Student
-from Repository.InMemoryRepository import InMemoryRepository
 
-class ui_representer:
+class UIRepresenter:
 
-    def __init__(self, InMemoryRepository):
-        self.student_list = InMemoryRepository.student_list
-        self.subjects_list = InMemoryRepository.subjects_list
+
+    def __init__(self):
 
         self.main_menu = [
                 "1:Adauga",
@@ -13,19 +11,20 @@ class ui_representer:
                 "3:Cautare",
                 "4:Asignare de note",
                 "5:Statistici",
-                "6:Modifica"
+                "6:Modifica",
+                "7:Iesire"
                 ]
         self.add_menu = [
         "1 - Adauga un student nou",
         "2 - Adauga o disciplina noua"
     ]
 
-    def show_student_list(self):
-        for i in self.student_list:
+    def show_student_list(self, students):
+        for i in students:
             i.show_students()
 
-    def show_subject_list(self):
-        for i in self.subjects_list:
+    def show_subject_list(self, subjects):
+        for i in subjects:
             i.show_subjects()
 
     def show_menu(self):
@@ -52,3 +51,6 @@ class ui_representer:
         teacher_name= input("Introduceti numele profesorului si apasati enter:").upper()
         subject = [id_of_subject, subject_name, teacher_name]
         return subject
+
+    def show_error(self):
+        print("Aceasta operatie nu se afla in meniu")

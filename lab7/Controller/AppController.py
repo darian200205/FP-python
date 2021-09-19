@@ -1,13 +1,13 @@
-from UI.UI_Representer import ui_representer
+from UI.UI_Representer import UIRepresenter
 from Repository.InMemoryRepository import InMemoryRepository
 from Domain.Student import Student
 
 class AppController:
 
 
-    def __init__(self, ui_representer, InMemoryRepository):
+    def __init__(self, UIRepresenter, InMemoryRepository):
         self.memory_representer = InMemoryRepository()
-        self.ui_representer = ui_representer(InMemoryRepository)
+        self.ui_representer = UIRepresenter()
 
     def start(self):
         do_task = {
@@ -17,14 +17,21 @@ class AppController:
             4: self.task4,
             5: self.task5,
             6: self.task6,
+            7: self.task7,
         }
 
         while True:
             self.ui_representer.show_menu()
             task = self.ui_representer.get_task()
-            do_task[task]()
-            self.ui_representer.show_student_list()
-            self.ui_representer.show_subject_list()
+
+            if task in do_task:
+                do_task[task]()
+            else:
+                self.ui_representer.show_error()
+                continue
+
+            self.ui_representer.show_student_list(self.memory_representer.student_list)
+            self.ui_representer.show_subject_list(self.memory_representer.subjects_list)
 
     def task1(self):
         self.ui_representer.show_add_menu()
@@ -50,5 +57,8 @@ class AppController:
 
     def task6(self):
         pass
+    
+    def task7(self):
+        quit()
 
 
