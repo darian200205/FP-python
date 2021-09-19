@@ -1,4 +1,3 @@
-from Student import Student
 from data_lists import student_list
 from show_menus import show_statistics
 import math
