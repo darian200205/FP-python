@@ -1,5 +1,5 @@
 from data_lists import student_list, subjects_list
-from Search import student_exists, subject_exists
+from Controller.Search import student_exists, subject_exists
 
 def do_task_4():
     if not subjects_list:
