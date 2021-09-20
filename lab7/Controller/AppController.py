@@ -12,7 +12,7 @@ class AppController:
         self.ui_representer = UIRepresenter()
         self.search_representer = SearchModule()
 
-        
+
 
     def start(self):
         do_task = {
