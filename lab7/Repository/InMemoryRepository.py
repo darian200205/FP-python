@@ -82,7 +82,5 @@ class InMemoryRepository:
 
 
 class InFileRepository(InMemoryRepository):
-    def add_student(self):
-        with open('InFileData', 'w') as file:
-            file.write(self.student_list)
+    pass
 
