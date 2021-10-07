@@ -44,8 +44,10 @@ class InMemoryRepository:
                     if self.__student_list[student].grades[grade][0] == id_of_subject:
                         self.__student_list[student].grades[grade].append(grade_)
                         self.__student_list[student].grades[grade][2] += grade_
-                        self.__student_list[student].grades[grade][2] = self.__student_list[student].grades[grade][2] / (
-                                len(self.__student_list[student].grades[grade]) - 4)
+                        self.__student_list[student].grades[grade][2] = self.__student_list[student].grades[grade][
+                                                                            2] / (
+                                                                                len(self.__student_list[student].grades[
+                                                                                        grade]) - 4)
                         break
 
     def modify_student(self, modify_what, target_student):
@@ -128,3 +130,18 @@ class InMemoryRepository:
         best_students = sorted(self.__student_list, key=lambda x: x.average, reverse=True)
         number_of_students = 20 * len(self.__student_list) / 100
         return [best_students, number_of_students]
+
+
+class InFileRepository(InMemoryRepository):
+
+    def load_list(self):
+        sel = open('InFileData', 'r')
+
+
+    def add_student(self):
+        file = open('InFileData', 'w')
+        file.write(str(self._InMemoryRepository__student_list))
+        file.close()
+
+
+
