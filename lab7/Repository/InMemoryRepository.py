@@ -79,3 +79,10 @@ class InMemoryRepository:
 
         else:
             self.ui_representer.show_error()
+
+
+class InFileRepository(InMemoryRepository):
+    def add_student(self):
+        with open('InFileData', 'w') as file:
+            file.write(self.student_list)
+

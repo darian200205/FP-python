@@ -1,7 +1,6 @@
 from UI.UI_Representer import UIRepresenter
 from Repository.InMemoryRepository import InMemoryRepository
-from Domain.Student import Student
-from Domain.Subject import Subject
+from Repository.InMemoryRepository import InFileRepository
 from Controller.Search import SearchModule
 from Controller.Statistics import Statistics
 
@@ -10,6 +9,7 @@ class AppController:
 
     def __init__(self):
         self.memory_representer = InMemoryRepository()
+        self.file_representer = InFileRepository()
         self.ui_representer = UIRepresenter()
         self.search_representer = SearchModule()
         self.statistics = Statistics()
@@ -44,6 +44,7 @@ class AppController:
         if task == 1:
             student = self.ui_representer.get_student_info()
             self.memory_representer.add_student(student[0], student[1])
+            self.file_representer.add_student()
         elif task == 2:
             subject = self.ui_representer.get_subject_info()
             self.memory_representer.add_subject(subject[0], subject[1], subject[2])
