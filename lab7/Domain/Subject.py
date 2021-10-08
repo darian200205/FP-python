@@ -5,4 +5,4 @@ class Subject:
         self.teacher = teacher.upper()
 
     def show_subjects(self):
-        print('ID:' + str(self.subject_id) + ':' + self.subject_name + '-' + self.teacher)
+        print(str('ID:' + self.subject_id) + ':' + str(self.subject_name) + '-' + str(self.teacher))

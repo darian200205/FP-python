@@ -52,9 +52,10 @@ class UIRepresenter:
             students[student].show_students()
 
     def show_subject_list(self, subjects):
-        for i in subjects:
-            i.show_subjects()
-        print('\n')
+        if subjects:
+            for i in subjects:
+                i.show_subjects()
+            print('\n')
 
     def show_menu(self):
         for i in self.main_menu:

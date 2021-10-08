@@ -1,7 +1,5 @@
 from UI.UI_Representer import UIRepresenter
 from Repository.InMemoryRepository import InMemoryRepository, InFileRepository
-from Domain.Student import Student
-from Domain.Subject import Subject
 
 
 class AppController:
@@ -22,6 +20,9 @@ class AppController:
             7: quit,
         }
 
+        self.ui_representer.show_student_list(self.file_representer.load_students())
+        self.ui_representer.show_subject_list(self.file_representer.load_subjects())
+
         while True:
             self.ui_representer.show_menu()
             task = self.ui_representer.get_task()
@@ -41,10 +42,11 @@ class AppController:
         if task == 1:
             student = self.ui_representer.get_student_info()
             self.memory_representer.add_student(student[0], student[1])
-            self.file_representer.add_student()
+            self.file_representer.add_student(student[0], student[1])
         elif task == 2:
             subject = self.ui_representer.get_subject_info()
             self.memory_representer.add_subject(subject[0], subject[1], subject[2])
+            self.file_representer.add_subject(subject[0], subject[1], subject[2])
         else:
             self.ui_representer.show_error()
 
@@ -137,7 +139,3 @@ class AppController:
 
         else:
             self.ui_representer.show_error()
-
-
-
-
