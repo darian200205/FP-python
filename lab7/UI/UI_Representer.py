@@ -1,5 +1,6 @@
 from Domain.Student import Student
 import math
+from collections.abc import Iterable
 
 
 class UIRepresenter:
@@ -42,16 +43,22 @@ class UIRepresenter:
             "2 - Modifica datele unei discipline"
         ]
 
-    def show_student_list(self, students):
+    @staticmethod
+    def show_student_list(students):
         print('\n')
-        for i in students:
-            i.show_students()
+        if isinstance(students, Iterable):
+            for i in students:
+                i.show_students()
+        else:
+            print(str(students))
 
-    def show_best_students(self, students, twenty_percent):
+    @staticmethod
+    def show_best_students(students, twenty_percent):
         for student in range(0, math.ceil(twenty_percent)):
             students[student].show_students()
 
-    def show_subject_list(self, subjects):
+    @staticmethod
+    def show_subject_list(subjects):
         if subjects:
             for i in subjects:
                 i.show_subjects()
