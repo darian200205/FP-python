@@ -89,8 +89,12 @@ class UIRepresenter:
             print(i)
 
     def get_task(self):
-        task = int(input("Introduceti numarul urmatoarei operatii si apasati enter:"))
-        return task
+        try:
+            task = int(input("Introduceti numarul urmatoarei operatii si apasati enter:"))
+        except ValueError as error:
+            print(error)
+        else:
+            return task
 
     def get_student_info(self):
         student_id = input("Introduceti ID-ul studentului si apasati enter:").upper()
@@ -105,7 +109,8 @@ class UIRepresenter:
         subject = [id_of_subject, subject_name, teacher_name]
         return subject
 
-    def show_error(self):
+    @staticmethod
+    def show_error():
         print("Eroare! Aceasta operatie nu s-a putut efectua.")
 
     def get_student_name(self):
