@@ -130,12 +130,12 @@ class AppController:
         if task == 1:
             student_to_modify = self.ui_representer.get_student_name()
             modify_what = self.ui_representer.get_answer()
-            self.memory_representer.modify_student(modify_what, student_to_modify)
+            self.file_representer.modify_student(modify_what, student_to_modify)
 
         elif task == 2:
             subject_to_modify = self.ui_representer.get_subject_id()
             modify_what = self.ui_representer.get_answer()
-            self.memory_representer.modify_subject(modify_what, subject_to_modify)
+            self.file_representer.modify_subject(modify_what, subject_to_modify)
 
         else:
             self.ui_representer.show_error()

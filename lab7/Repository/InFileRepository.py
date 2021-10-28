@@ -12,7 +12,7 @@ import pickle
 class InFileRepository(InMemoryRepository):
 
     def __init__(self):
-        #  super().__init__()
+        super().__init__()
         # updating students list
         if os.path.isfile("studentList.pickle"):
             with open("studentList.pickle", "rb") as handler:
@@ -74,3 +74,12 @@ class InFileRepository(InMemoryRepository):
             for subject in super()._subjects_list:
                 updated_subject = Subject(subject.subject_id, subject.subject_name, subject.teacher)
                 pickle.dump(updated_subject, handler, protocol=pickle.HIGHEST_PROTOCOL)
+    
+    def modify_subject(self, modify_what, target_subject):
+        super().modify_subject(modify_what, target_subject)
+        self.update_subject_list()
+        self.update_student_list()
+    
+    def modify_student(self, modify_what, target_student):
+        super().modify_student(modify_what, target_student)
+        self.update_student_list()
