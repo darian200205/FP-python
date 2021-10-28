@@ -22,6 +22,7 @@ class AppController:
         }
 
         self.ui_representer.show_student_list(self.memory_representer.get_student_list())
+        self.ui_representer.show_subject_list(self.memory_representer.get_subject_list())
 
         while True:
             self.ui_representer.show_menu()
@@ -52,11 +53,11 @@ class AppController:
         self.ui_representer.show_delete_menu()
         task = self.ui_representer.get_task()
         if task == 1:
-            student_to_delete = self.ui_representer.get_student_info().upper()
-            self.memory_representer.delete_student(student_to_delete[1])
+            student_to_delete = self.ui_representer.get_student_info()[1].upper()
+            self.file_representer.delete_student(student_to_delete)
         elif task == 2:
-            subject_to_delete = self.ui_representer.get_subject_info()
-            self.memory_representer.delete_subject(subject_to_delete[1])
+            subject_to_delete = self.ui_representer.get_subject_info()[0].upper()
+            self.file_representer.delete_subject(subject_to_delete)
         else:
             self.ui_representer.show_error()
 
@@ -99,7 +100,7 @@ class AppController:
             if grade < 1 or grade > 10:
                 self.ui_representer.show_error()
             else:
-                self.memory_representer.grade_student(grade, student_to_grade, id_of_subject)
+                self.file_representer.grade_student(grade, student_to_grade, id_of_subject)
 
     def task5(self):
         self.ui_representer.show_statistics_menu()

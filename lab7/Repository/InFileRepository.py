@@ -6,6 +6,9 @@ import os
 import pickle
 
 
+#  import json
+
+
 class InFileRepository(InMemoryRepository):
 
     def __init__(self):
@@ -44,3 +47,30 @@ class InFileRepository(InMemoryRepository):
         else:
             with open("subjectList.pickle", "wb") as handler:
                 pickle.dump(Subject(subject_id, subject_name, teacher_name), handler, protocol=pickle.HIGHEST_PROTOCOL)
+        self.update_student_list()
+
+    def delete_student(self, student_name):
+        super().delete_student(student_name)
+        self.update_student_list()
+
+    def delete_subject(self, subject_to_delete):
+        super().delete_subject(subject_to_delete)
+        self.update_subject_list()
+        self.update_student_list()
+
+    def grade_student(self, grade_, id_of_student, id_of_subject):
+        super().grade_student(grade_, id_of_student, id_of_subject)
+        self.update_student_list()
+
+    def update_student_list(self):
+        with open("studentList.pickle", "wb") as handler:
+            for student in super()._student_list:
+                updated_student = Student(student.student_id, student.student_name)
+                updated_student.grades = student.grades
+                pickle.dump(updated_student, handler, protocol=pickle.HIGHEST_PROTOCOL)
+
+    def update_subject_list(self):
+        with open("subjectList.pickle", "wb") as handler:
+            for subject in super()._subjects_list:
+                updated_subject = Subject(subject.subject_id, subject.subject_name, subject.teacher)
+                pickle.dump(updated_subject, handler, protocol=pickle.HIGHEST_PROTOCOL)

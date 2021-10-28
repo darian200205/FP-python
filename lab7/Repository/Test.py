@@ -1,38 +1,23 @@
-from Domain.Student import Student
-from Repository.InMemoryRepository import InMemoryRepository
-import pickle
-import os
+import json
 
-empty_list = []
+dictionary = {
+    "Darian": "Smecher",
+    "Emilia": 1,
+    "Bejan": "nebunu"
+}
 
-if os.path.isfile("another_test1.pickle"):
-    print("it exists!")
-else:
-    print("the file does not exist!")
+ans = {}
 
-quit()
 
-with open("another_test1.pickle", "wb") as handler:
-    pickle.dump("", handler)
+def dump_json():
+    file = open("test.json", 'w')
+    json.dump(dictionary, file)
+    file.close()
 
-file_size = os.path.getsize("another_test.pickle")
-print(str(file_size))
-quit()
 
-print(ans)
-quit()
+def load_json():
+    file = open("test.json", 'r')
+    ans = json.loads(file)
+    print(ans["Darian"])
+    file.close()
 
-my_list = []
-
-with open("test.pickle", "rb") as handler:
-    while 1:
-        try:
-            my_list.append(pickle.load(handler))
-        except EOFError:
-            break
-
-print(my_list)
-quit()
-
-for i in my_list:
-    i.show_students()

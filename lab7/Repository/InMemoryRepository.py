@@ -9,11 +9,12 @@ class InMemoryRepository:
 
     def __init__(self):
         self.ui_representer = UIRepresenter()
-
+        """
         for student in range(len(self._student_list)):
             for subject in range(len(self._subjects_list)):
                 self._student_list[student].grades.append(
                     [self._subjects_list[subject].subject_id, "Media", 0, "Notele"])
+        """
 
     def get_student_list(self):
         return self._student_list
@@ -39,8 +40,14 @@ class InMemoryRepository:
 
     def delete_subject(self, subject_to_delete):
         for i in self._subjects_list:
-            if i.subject_name == subject_to_delete:
+            if i.subject_id == subject_to_delete:
                 self._subjects_list.remove(i)
+                break
+        for student in self._student_list:
+            for grade in range(len(student.grades)):
+                if student.grades[grade][0] == subject_to_delete:
+                    student.grades.remove(student.grades[grade])
+                    break
 
     def grade_student(self, grade_, id_of_student, id_of_subject):
         for student in range(len(self._student_list)):
@@ -122,7 +129,7 @@ class InMemoryRepository:
         return sorted_students_by_name
 
     def sort_by_subject_grades(self, target_subject):
-        for student in range(0, len(self._student_list[0].grades)):
+        for student in range(len(self._student_list[0].grades)):
             if self._student_list[0].grades[student][0] == target_subject:
                 target = student
 
@@ -130,7 +137,7 @@ class InMemoryRepository:
         return sorted_students_by_average
 
     def sort_by_average(self):
-        for student in range(0, len(self._student_list)):
+        for student in range(len(self._student_list)):
             self._student_list[student].average = self._student_list[student].calculate_average_grades()
         best_students = sorted(self._student_list, key=lambda x: x.average, reverse=True)
         number_of_students = 20 * len(self._student_list) / 100
